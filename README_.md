@@ -132,7 +132,7 @@ The modified architecture notably does not use dropout. I investigated the train
 
 Here are five German traffic signs that I found on the web:
 
-![Downloaded images][/figures/Downloaded images.png] 
+![Downloaded images](/figures/Downloaded images.png)
 
 Two of the downloaded images do not belong to the training dataset (Traffic Calming and Shared Pedestrian & Bike Path) These two are  incorrectly detected (unsurprisingly).
 
@@ -150,7 +150,7 @@ Here are the results of the prediction:
 
 The softmax scores of the model on the five images are:
 
-![Predicted probabilities][/figures/predictions_histogram.png]
+![Predicted probabilities](/figures/predictions_histogram.png)
 
 Strictly speaking, the model predicted 1 out of 5 images correctly. However, 2 of the images were not in the training set. 
 _Further investigations will be done to understand the poor performance._
