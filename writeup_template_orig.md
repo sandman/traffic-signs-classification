@@ -150,7 +150,7 @@ Here are the results of the prediction:
 
 The softmax scores of the model on the five images are:
 
-[!Predicted probabilities][/figures/predictions_histogram.png]
+![Predicted probabilities][/figures/predictions_histogram.png]
 
 Strictly speaking, the model predicted 1 out of 5 images correctly. However, 2 of the images were not in the training set. 
 _Further investigations will be done to understand the poor performance._
