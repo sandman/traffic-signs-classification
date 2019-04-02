@@ -89,9 +89,7 @@ After augmentation on each image, 4 augmented images are generated. So a total o
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
-I experimented with different CNN architectures, notably [Sermanet](https://www.researchgate.net/profile/Yann_Lecun/publication/224260345_Traffic_sign_recognition_with_multi-scale_Convolutional_Networks/links/0912f50f9e763201ab000000/Traffic-sign-recognition-with-multi-scale-Convolutional-Networks.pdf), different variants of [LeNet](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf) and [Inception](https://arxiv.org/abs/1409.4842). After much experimentation, I decided to go for a simple modified LeNet model and instead focus more efforts on the dataset pre-processing. 
-
-The modified LeNet architecture is shown below:
+The final model architecture was a modified LeNet architecture as shown below:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -121,18 +119,12 @@ Due to the extensive training dataset pro-processing, even the relatively simple
 * training set accuracy of 97.1%
 * test set accuracy of 95.9%
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+#### Notes on model selection
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
+I experimented with different CNN architectures, notably [Sermanet](https://www.researchgate.net/profile/Yann_Lecun/publication/224260345_Traffic_sign_recognition_with_multi-scale_Convolutional_Networks/links/0912f50f9e763201ab000000/Traffic-sign-recognition-with-multi-scale-Convolutional-Networks.pdf), different variants of [LeNet](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf) and [Inception](https://arxiv.org/abs/1409.4842). After much experimentation, I decided to go for a simple modified LeNet model and instead focus more efforts on the dataset pre-processing. 
+
+The modified architecture notably does not use dropout. I investigated the training loss in Tensorboard in the earlier phase but found no overfitting. This could be due to the extensive dataset augmentation which leads to sufficient generalization. However, this aspect needs to be more carefully investigated.
+
 
 ### Test a Model on New Images
 
@@ -140,10 +132,9 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![Downloaded images][/figures/Downloaded images.png] 
 
-The first image might be difficult to classify because ...
+Two of the downloaded images do not belong to the training dataset (Traffic Calming and Shared Pedestrian & Bike Path) These two are  incorrectly detected (unsurprisingly).
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
@@ -151,33 +142,57 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Shared Pedestrian and Bike Path     		| Dangerous curve to the right   									| 
+| Priority road     			| Priority road										|
+| Traffic calming area (verkehrsberuhigter bereich)					| Road work											|
+| Pedestrians only      		| No vehicles					 				|
+| General caution			| No passing    							|
 
-
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+Strictly speaking, the model predicted 1 out of 5 images correctly. However, 2 of the images were not in the training set. Further investigations will be done to understand the poor performance.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+__Image: Shared Pedestrian & Bike path__
+Probabilities:
+   0.998961 : 20 - Dangerous curve to the right
+   0.000493 : 25 - Road work
+   0.000192 : 40 - Roundabout mandatory
+   0.000156 : 35 - Ahead only
+   0.000107 : 11 - Right-of-way at the next intersection
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+__Image: Priority Road__
+Probabilities:
+   1.000000 : 12 - Priority road
+   0.000000 : 9 - No passing
+   0.000000 : 40 - Roundabout mandatory
+   0.000000 : 35 - Ahead only
+   0.000000 : 15 - No vehicles
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+__Image: Traffic Calming__
+Probabilities:
+   0.999080 : 25 - Road work
+   0.000518 : 5 - Speed limit (80km/h)
+   0.000221 : 36 - Go straight or right
+   0.000083 : 38 - Keep right
+   0.000071 : 13 - Yield
 
+__Image: Pedestrians only__
+Probabilities:
+   0.607307 : 15 - No vehicles
+   0.227924 : 34 - Turn left ahead
+   0.099947 : 39 - Keep left
+   0.048865 : 13 - Yield
+   0.014065 : 33 - Turn right ahead
 
-For the second image ... 
+__Image: General caution__
+Probabilities:
+   0.888047 : 9 - No passing
+   0.111953 : 12 - Priority road
+   0.000000 : 40 - Roundabout mandatory
+   0.000000 : 35 - Ahead only
+   0.000000 : 23 - Slippery road
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
-
+Not done (yet)
