@@ -65,17 +65,17 @@ The approach to tackle this problem is described in the next step.
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
 The pre-processing pipeline consisted of three steps:
-* Colorspace conversion from RGB to YCrCb and extracting the Y ('Luma') channel: 
+* __Colorspace conversion from RGB to YCrCb and extracting the Y ('Luma') channel:__
 
 [YCrCb](https://en.wikipedia.org/wiki/YCbCr) is one of multiple colour models that separate intensity from colour information, making it more lighting invariant than RGB. This is important for traffic signs that often have very variable lighting due to shadows, time of day etc. 
 
-* Contrast-Limited Adaptive Histogram Equalization (CLAHE) on Y channel:
+* __Contrast-Limited Adaptive Histogram Equalization (CLAHE) on Y channel:__
 
 Histogram equalization is an image-processing technique that enhances the contrast of images. Adaptive Histogram Equalization (AHE) adapts to the pixel intensity distribution in the image, making it more effective for images with non-uniform pixel intensity distribution. However, AHE tends to overamplify the contrast in near-constant regions of the image, since the histogram in such regions is highly concentrated.  Contrast Limited Adaptive Histogram Equalization (CLAHE) mitigates this problem by limiting the contrast-amplification which limits the noise amplification. CLAHE is run on the Y-channel of all images in the training set. An example of what that looks like (in Grayscale) is shown below:
 
 ![CLAHE-processed images](/figures/CLAHE_images.png)
 
-* Data augmentation to address class imbalace:
+* __Data augmentation to address class imbalace:__
 
 To address the class imbalance in the training dataset, I generated augmented images with the four random effects: Rotation, Shearing, Shifting and Zooming. The augmentation was applied to each image of the training set with the goal of making each class have atleast 2000 sample images.
 
@@ -148,13 +148,14 @@ Here are the results of the prediction:
 | Pedestrians only      		| No vehicles					 				|
 | General caution			| No passing    							|
 
-Strictly speaking, the model predicted 1 out of 5 images correctly. However, 2 of the images were not in the training set. Further investigations will be done to understand the poor performance.
+Strictly speaking, the model predicted 1 out of 5 images correctly. However, 2 of the images were not in the training set. 
+_Further investigations will be done to understand the poor performance._
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 __Image: Shared Pedestrian & Bike path__
 Probabilities:
-   0.998961 : 20 - Dangerous curve to the right
+   __0.998961 : 20 - Dangerous curve to the right__
    0.000493 : 25 - Road work
    0.000192 : 40 - Roundabout mandatory
    0.000156 : 35 - Ahead only
@@ -162,7 +163,7 @@ Probabilities:
 
 __Image: Priority Road__
 Probabilities:
-   1.000000 : 12 - Priority road
+   __1.000000 : 12 - Priority road__
    0.000000 : 9 - No passing
    0.000000 : 40 - Roundabout mandatory
    0.000000 : 35 - Ahead only
@@ -170,7 +171,7 @@ Probabilities:
 
 __Image: Traffic Calming__
 Probabilities:
-   0.999080 : 25 - Road work
+   __0.999080 : 25 - Road work__
    0.000518 : 5 - Speed limit (80km/h)
    0.000221 : 36 - Go straight or right
    0.000083 : 38 - Keep right
@@ -178,7 +179,7 @@ Probabilities:
 
 __Image: Pedestrians only__
 Probabilities:
-   0.607307 : 15 - No vehicles
+   __0.607307 : 15 - No vehicles__
    0.227924 : 34 - Turn left ahead
    0.099947 : 39 - Keep left
    0.048865 : 13 - Yield
@@ -186,7 +187,7 @@ Probabilities:
 
 __Image: General caution__
 Probabilities:
-   0.888047 : 9 - No passing
+   __0.888047 : 9 - No passing__
    0.111953 : 12 - Priority road
    0.000000 : 40 - Roundabout mandatory
    0.000000 : 35 - Ahead only
