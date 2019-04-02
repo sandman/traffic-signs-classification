@@ -154,44 +154,56 @@ _Further investigations will be done to understand the poor performance._
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 __Image: Shared Pedestrian & Bike path__
-Probabilities:
-   __0.998961 : 20 - Dangerous curve to the right__
-   0.000493 : 25 - Road work
-   0.000192 : 40 - Roundabout mandatory
-   0.000156 : 35 - Ahead only
-   0.000107 : 11 - Right-of-way at the next intersection
 
+|    Probabilities     |     Class     |      Sign      |
+| :------------------: |:-------------:| :-------------:|
+|  0.998961    | 20 | Dangerous curve to the right | 
+| 0.000493 | 25    | Road work | 
+| 0.000192 | 40    |  Roundabout mandatory  |
+| 0.000156 | 35    | Ahead only  |
+| 0.000107 | 11    | Right-of-way at the next intersection | 
+   
+   
+   
 __Image: Priority Road__
-Probabilities:
-   __1.000000 : 12 - Priority road__
-   0.000000 : 9 - No passing
-   0.000000 : 40 - Roundabout mandatory
-   0.000000 : 35 - Ahead only
-   0.000000 : 15 - No vehicles
+   
+|    Probabilities     |     Class     |      Sign      |
+| :------------------: |:-------------:| :-------------:|
+|  1.000000   | 12 | Priority road | 
+| 0.000000 | 9    | No passing | 
+| 0.000000 | 40    |  Roundabout mandatory  |
+| 0.000000 | 35    | Ahead only  |
+| 0.000000 | 15    | No vehicles | 
 
 __Image: Traffic Calming__
-Probabilities:
-   __0.999080 : 25 - Road work__
-   0.000518 : 5 - Speed limit (80km/h)
-   0.000221 : 36 - Go straight or right
-   0.000083 : 38 - Keep right
-   0.000071 : 13 - Yield
+
+|    Probabilities     |     Class     |      Sign      |
+| :----------------: |:-------------:| :-------------:|
+|  0.999080   | 25 | Road work  | 
+| 0.000518  | 5    | Speed limit (80km/h) | 
+| 0.000221 | 36    |  Go straight or right  |
+| 0.000083 | 38    | Keep right  |
+| 0.000071 | 13    | Yield | 
 
 __Image: Pedestrians only__
-Probabilities:
-   __0.607307 : 15 - No vehicles__
-   0.227924 : 34 - Turn left ahead
-   0.099947 : 39 - Keep left
-   0.048865 : 13 - Yield
-   0.014065 : 33 - Turn right ahead
+
+|    Probabilities     |     Class     |      Sign      |
+| :----------------: |:-------------:| :-------------:|
+|  0.607307   | 15 | No vehicles  | 
+| 0.227924  | 34    |Turn left ahead | 
+| 0.099947 | 39   |  Keep left  |
+| 0.048865 | 13    | Yield  |
+| 0.014065 | 33    | Turn right ahead | 
 
 __Image: General caution__
-Probabilities:
-   __0.888047 : 9 - No passing__
-   0.111953 : 12 - Priority road
-   0.000000 : 40 - Roundabout mandatory
-   0.000000 : 35 - Ahead only
-   0.000000 : 23 - Slippery road
+   
+|    Probabilities     |     Class     |      Sign      |
+| :----------------: |:-------------:| :-------------:|
+|  0.888047   | 9 | No passing | 
+| 0.111953  | 12    | Priority road | 
+| 0.000000 | 40   |  Roundabout mandatory  |
+| 0.000000 | 35    | Ahead only  |
+| 0.000000 | 23    | Slippery road | 
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
